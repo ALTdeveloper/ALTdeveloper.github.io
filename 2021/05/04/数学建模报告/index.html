@@ -1,0 +1,1818 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="数学建模报告, Lazurit">
+    <meta name="description" content="数学建模报告摘要根据题目给出的第1-104周血管机器人使用数量表，我们按照题目逐渐增加约束条件，通过Python编程构建回溯算法，配合手动演算验证数据得到最优解。同时在第四问中利用回溯查找的方法，寻找提前购入带来的降价和额外的维护费用之间的">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>数学建模报告 | Lazurit</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Lazurit</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Lazurit</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ALTdeveloper" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me!
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ALTdeveloper" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me!" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">数学建模报告</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {/*目录正在浏览位置文字颜色*/
+        color: #51A8DD;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {/*目录正在浏览位置文字颜色*/
+        color: #51A8DD;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                                <span class="chip bg-color">数学建模</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="post-category">
+                                数学建模
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-05-04
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-05-18
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.5k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="数学建模报告"><a href="#数学建模报告" class="headerlink" title="数学建模报告"></a>数学建模报告</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>根据题目给出的第1-104周血管机器人使用数量表，我们按照题目逐渐增加约束条件，通过Python编程构建回溯算法，配合手动演算验证数据得到最优解。同时在第四问中利用回溯查找的方法，寻找提前购入带来的降价和额外的维护费用之间的最优解。对于第五问我们采用Matlab对自定义函数进行参数整定，取得了优良的拟合效果，通过对这个函数进行采样得到104周后需求数据，代入方案一和方案二分别计算，得到更优的方案是</p>
+<p>关键词：回溯算法 Python 血管机器人</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着社会的不断发展和人们生活水平的逐渐提高，心血管病已逐渐成为影响人们健康的一大因素。应对此类疾病，血管介入手术能够有效地对其进行诊断与治疗，已成为主要的治疗方法。传统的介入治疗方案是在医学影像设备的引导下，经皮穿刺，将穿刺针、特制导管、导丝等精密器械引入体内血管，对疾病进行微创诊断和治疗。但是该种方案具有操作复杂，对仪器要求苛刻，患者需接收射线照射等缺点，且医务人员也会受到负面影响。基于以上问题血管介入机器人被研发出来用于解放手术室中的医生，减少医生的负担的同时提升手术的安全性与准确性。</p>
+<p>某医院购买了型号为ABLVR型号的血管机器人，其具有两个部分（容器艇，操作手），一个容器艇上拥有四个操作手，其整体一起工作时可在人体中游动。新操作手需在已学习好的操作手的指导下学习一周后投入工作，机器人整体的工作时间是一周，工作一周后操作手需要保养一周，容器艇不必须保养可连续使用。</p>
+<p>该医院从第一周开始使用此机器人，初始拥有13个容器艇和50个熟练操作手</p>
+<h2 id="问题重述"><a href="#问题重述" class="headerlink" title="问题重述"></a>问题重述</h2><h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><p>在每周开始时，医院可以购买到操作手和容器艇。每个熟练操作手可以作为指导者“指导”10个购买的新操作手进行生物学习。如果仅仅考虑第1-8周，请问每周需要购买多少容器艇和操作手，既满足治疗又能够使运营成本达到最低？</p>
+<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><p>假设每周有20%的血管机器人损毁（损毁的个数按四舍五入取整），其他条件遵循问题1，通盘考虑第1-104周，请问总共需要购买多少容器艇和操作手，既满足治疗又能够使运营成本达到最低？填表并进行具体分析，与1–8周的结果数据进行对比分析。</p>
+<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><p>如果每名熟练操作手可以“指导”新操作手的数量调整为不超过20个，假设每周有10%的血管机器人损毁（损毁的个数按四舍五入取整），同问题2，请研究第1-104周里总共需要购买多少容器艇和操作手既满足治疗又能够使运营成本达到最低？</p>
+<h3 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h3><p>如果购买操作手和容器艇有优惠政策，即容器艇一次性购买量不超过5个时的单价为200元&#x2F;个；容器艇一次性购买量超过5个但不超过10个时，超过5个的那部分单价为180元&#x2F;个；容器艇一次性购买量超过10个时，超过10个的那部分单价为160元&#x2F;个。同样，操作手一次性购买量不超过20个时的单价为100元&#x2F;个；操作手一次性购买量超过20个但不超过40个时，超过20个的那部分单价为90元&#x2F;个；操作手一次性购买量超过40个时，超过40个的那部分单价为80元&#x2F;个。其他条件遵循问题3，则第1-104周里总共购买的容器艇和操作手将如何调整？</p>
+<h3 id="问题五"><a href="#问题五" class="headerlink" title="问题五"></a>问题五</h3><p>预测第105-112周的血管机器人的使用需求。为了研究第105-112周的血管机器人的使用成本，在遵循问题4条件的基础上，考虑两种不同的方案。</p>
+<p>方案1：在第1-104周最优结果的基础上，医院在第105周开始时有可能需要以每个300元的高价购买能够直接使用的容器艇和每个150元购买熟练操作手，而后续每周均按问题4中的优惠政策购买合适数量的新容器艇和新操作手，满足第105-112周的血管机器人的需求。</p>
+<p>方案2：通盘考虑第1-112周的血管机器人的需求。</p>
+<p>比较两种方案的第1-112周最低运营成本的差额。</p>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>一、在第一至三问中，由于采购费用固定，故运营成本主要来自于操作手和容器艇的保养费，为了既满足治疗又能够使运营成本达到最低，只要使容器艇和操作手的数量恰好满足治疗业务需求，即可保证剩余不进行工作的容器艇和操作手数量最小，即保养费最少。</p>
+<p>二、操作手训练时需要有老操作手教学，在计算不足的操作手时需额外计算此部分操作手</p>
+<p>三、由于容器艇工作后不必要进行保养，在第一至三问模型中可认为其数量只要满足最大数量需求即可，当需求量增加超过现有容器艇时，在前一周购入即可。</p>
+<p>四、该问题较为实际且数据量不大，可以采用手动推演的的方式进行仿真推算数据，同时借助编程工具构建模型相互验证，减小后期计算量</p>
+<p>五、观察提供的需求数据，可见其具有一定的变化趋势，可以采用拟合工具寻找规律并预测未来变化</p>
+<p><img src="/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%8A%A5%E5%91%8A.assets/image-20220503232033832-16515912348392.png" alt="image-20220503232033832"></p>
+<h2 id="模型的建立与求解"><a href="#模型的建立与求解" class="headerlink" title="模型的建立与求解"></a>模型的建立与求解</h2><h3 id="符号约定"><a href="#符号约定" class="headerlink" title="符号约定"></a>符号约定</h3><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><x></td>
+<td>对x四舍五入</td>
+</tr>
+</tbody></table>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>N(t)</td>
+<td>第t周时血管机器人需求函数，以天数t为自变量</td>
+</tr>
+<tr>
+<td>M(t)</td>
+<td>第t周开始时进入保养的操作手</td>
+</tr>
+<tr>
+<td>L(t)</td>
+<td>第t周开始时剩余可用的操作手</td>
+</tr>
+<tr>
+<td>HAdd(t)</td>
+<td>第t周开始时需要购买的操作手</td>
+</tr>
+<tr>
+<td>CAdd(t)</td>
+<td>第t周开始时需要购买的容器艇</td>
+</tr>
+<tr>
+<td>Teh</td>
+<td>第t周开始时用于培训的操作手</td>
+</tr>
+<tr>
+<td>C(t)</td>
+<td>第t周开始时容器艇的数量</td>
+</tr>
+</tbody></table>
+<h3 id="问题一模型建立求解"><a href="#问题一模型建立求解" class="headerlink" title="问题一模型建立求解"></a>问题一模型建立求解</h3><p>问题一时间范围为1–8周，数据量较小，采用手动递推的方式模拟</p>
+<p>为了满足每一周的治疗需求，当每一周开始时，其操作手的数量应满足</p>
+<p>$M(t-1)+HAdd(t-1)+L(t) \geq 4N(t)$</p>
+<p>所对应的容器艇数量</p>
+<p>$C(t)+CAdd(t-1) &#x3D; N(t)$</p>
+<p>其中，一个熟练操作手将可以带最多10个新操作手</p>
+<p>手动推演得操作手需求情况</p>
+<table>
+<thead>
+<tr>
+<th>t</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>M</td>
+<td>0</td>
+<td>44</td>
+<td>20</td>
+<td>16</td>
+<td>28</td>
+<td>64</td>
+<td>24</td>
+<td>20</td>
+</tr>
+<tr>
+<td>L</td>
+<td>6</td>
+<td>0</td>
+<td>28</td>
+<td>20</td>
+<td>0</td>
+<td>4</td>
+<td>48</td>
+<td>44</td>
+</tr>
+<tr>
+<td>HAdd</td>
+<td>14</td>
+<td>0</td>
+<td>0</td>
+<td>28</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CAdd</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>所需要的购买的操作手数量为$\sum_{t&#x3D;1}^{8}{HAdd(t)} &#x3D; 42$ 个</p>
+<p>所需要的购买的容器艇数量为$max(N(t))-C(1) &#x3D; 3$个</p>
+<p>使用Python构建代码模型[见附录 1]，利用上述模型进行递推</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> pos <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        maintain_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> need_arms_num<span class="token punctuation">[</span>pos<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+        remain_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> add_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> usable_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> need_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        usable_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> maintain_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> remain_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>当遇到可用操作手小于能够使用的操作手时，回溯一周并在回溯周购入所缺少的操作手</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">if</span> <span class="token punctuation">(</span>need_arms_num<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> usable_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            add_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> need_arms_num<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> usable_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>验证结果一致</p>
+<h3 id="问题二模型建立求解"><a href="#问题二模型建立求解" class="headerlink" title="问题二模型建立求解"></a>问题二模型建立求解</h3><p>在模型一的基础上，增设条件：每周结束时被使用的血管机器人将有20%损失</p>
+<p>故t周开始时进入保养的操作手为</p>
+<p>$M(t+1) &#x3D; 4&lt;0.8N(t)&gt;$</p>
+<p>若要满足医疗服务则需满足</p>
+<p>$L(t)+M(t-1)+HAdd(t-1)\geq 4N(t)$</p>
+<p>同时，为了满足训练新的操作手，需要熟练操作手来培训，每一个熟练操作手最多可以带10个新操作手，为了满足最小的维护费用和购买成本，有</p>
+<p>$10HAdd(t-1)\leq Teh$</p>
+<p>$Teh\leq L(t)$</p>
+<p>依据上述关系进行手动推演，由于题目没有明确描述，故此处认为“保养的容器艇数量”和“保养的操作手数量”均指“在指定的周数内正在进行保养”而不是“在指定的周数后需要保养”</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>周次</strong></th>
+<th align="center"><strong>购买的容器艇数量</strong></th>
+<th align="center"><strong>购买的操作手数量</strong></th>
+<th align="center"><strong>保养的操作手数量</strong></th>
+<th align="center"><strong>保养的容器艇数量</strong></th>
+<th align="center"><strong>参与训练的操作手数量（含“熟练工”和“新手”）</strong></th>
+<th align="center"><strong>总成本****（单位：元）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">第12周</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">4</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">第26周</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">22</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">第52周</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">18</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">第78周</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">44</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">第101周</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">79</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">第102周</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">87</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">第103周</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">79</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">第104周</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">0</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">1-104周（总计）</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">3096</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>使用Python构建代码模型[见附录 1]，利用上述模型进行递推，得到相同结果[完整结果见附录 2]</p>
+<h3 id="问题三模型建立求解"><a href="#问题三模型建立求解" class="headerlink" title="问题三模型建立求解"></a>问题三模型建立求解</h3><p>显然，问题三即是在问题二上对条件进行了更改，修改数据带入Python模型进行计算，得到以下结果[完整结果见附录 2]</p>
+<table>
+<thead>
+<tr>
+<th><strong>周次</strong></th>
+<th><strong>购买的容器艇数量</strong></th>
+<th><strong>购买的操作手数量</strong></th>
+<th><strong>保养的操作手数量</strong></th>
+<th><strong>保养的容器艇数量</strong></th>
+<th><strong>参与训练的操作手数量（含“熟练工”和“新手”）</strong></th>
+<th><strong>总成本****（单位：元）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第12周</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>第26周</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>第52周</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>第78周</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>第101周</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>第102周</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>第103周</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>第104周</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1-104周（总计）</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="问题四模型建立求解"><a href="#问题四模型建立求解" class="headerlink" title="问题四模型建立求解"></a>问题四模型建立求解</h3><p>在模型一到三中，我们已经利用Python实现并验证了对操作手和容器艇数量的建模，在模型四中，发生更改的条件为容器艇和操作手购买的优惠政策，因此我们只需在模型三的基础上改变购入机器人的时间，比较提前集体购入所带来的降价和其带来的保养费的多少，寻找最节省成本的方案即可。同时该模型相比于模型三并没有改变操作手训练的时间点，因此无需对代码模型进行过多改动。</p>
+<p>我们在模型三得到的购买时间和购买数量推演结果上</p>
+<h3 id="问题五模型建立求解"><a href="#问题五模型建立求解" class="headerlink" title="问题五模型建立求解"></a>问题五模型建立求解</h3><p>由于题目中没有给出104周以后对血管机器人的需求数量，我们将数据导入Matlab进行观察。通过plot函数，可以清晰的观察到其需求函数大致呈二次函数形上升，同时具有一定周期的波动</p>
+<p><img src="/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%8A%A5%E5%91%8A.assets/image-20220503194821775-16515785033691.png" alt="image-20220503194821775"></p>
+<p>我们想到可以构建以下函数模型</p>
+<p>$f(x)&#x3D;ax^m+bsin(nx)+cx+d$</p>
+<p>利用Matlab工具箱进行拟合，手动调整参数$m$和参数$n$，得到了以下拟合结果，可以看到其拟合结果良好，$R^2&#x3D;0.9598$</p>
+<p><img src="/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%8A%A5%E5%91%8A.assets/image-20220503200323478-16515794057432.png" alt="image-20220503200323478"></p>
+<p>相比于简单的二次函数拟合，该函数模型更加符合其周期性波动的特性，其后续预测结果变化规律也与1–104周基本一致</p>
+<p><img src="/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%8A%A5%E5%91%8A.assets/image-20220503201911486-16515803525233.png" alt="image-20220503201911486"></p>
+<p>对该函数$x\in(105,112)$区间的整数进行采样，结果四舍五入，得到以下结果</p>
+<table>
+<thead>
+<tr>
+<th>周数</th>
+<th>105</th>
+<th>106</th>
+<th>107</th>
+<th>108</th>
+<th>109</th>
+<th>110</th>
+<th>111</th>
+<th>112</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>需求预测</td>
+<td>102</td>
+<td>104</td>
+<td>106</td>
+<td>109</td>
+<td>112</td>
+<td>116</td>
+<td>120</td>
+<td>124</td>
+</tr>
+</tbody></table>
+<p><img src="/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%8A%A5%E5%91%8A.assets/image-20220503231813549-16515910947511.png" alt="image-20220503231813549"></p>
+<p>方案一</p>
+<p>方案二</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>本文没有参考文献</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="附录一"><a href="#附录一" class="headerlink" title="附录一"></a>附录一</h3><h3 id="第一问代码"><a href="#第一问代码" class="headerlink" title="第一问代码"></a>第一问代码</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">""" 周数 """</span>
+weeks <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">104</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">""" 需求机器人数量 x """</span>
+need_body_num <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token number">11</span><span class="token punctuation">,</span>	 <span class="token number">5</span><span class="token punctuation">,</span>	  <span class="token number">4</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>	<span class="token number">16</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>	<span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>
+    <span class="token number">13</span><span class="token punctuation">,</span>	 <span class="token number">6</span><span class="token punctuation">,</span>	  <span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>   <span class="token number">12</span><span class="token punctuation">,</span>   <span class="token number">5</span><span class="token punctuation">,</span>	<span class="token number">4</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>
+    <span class="token number">9</span><span class="token punctuation">,</span>	 <span class="token number">5</span><span class="token punctuation">,</span>	  <span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">11</span><span class="token punctuation">,</span>  <span class="token number">29</span><span class="token punctuation">,</span>   <span class="token number">21</span><span class="token punctuation">,</span>	<span class="token number">17</span><span class="token punctuation">,</span>  <span class="token number">20</span><span class="token punctuation">,</span>
+    <span class="token number">27</span><span class="token punctuation">,</span>	 <span class="token number">13</span><span class="token punctuation">,</span>  <span class="token number">9</span><span class="token punctuation">,</span>   <span class="token number">10</span><span class="token punctuation">,</span>  <span class="token number">16</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>	<span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>
+    <span class="token number">11</span><span class="token punctuation">,</span>	 <span class="token number">5</span><span class="token punctuation">,</span>	  <span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>   <span class="token number">12</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>	<span class="token number">7</span><span class="token punctuation">,</span>   <span class="token number">10</span><span class="token punctuation">,</span>
+    <span class="token number">15</span><span class="token punctuation">,</span>	 <span class="token number">10</span><span class="token punctuation">,</span>  <span class="token number">9</span><span class="token punctuation">,</span>   <span class="token number">11</span><span class="token punctuation">,</span>  <span class="token number">15</span><span class="token punctuation">,</span>   <span class="token number">10</span><span class="token punctuation">,</span>	<span class="token number">10</span><span class="token punctuation">,</span>	 <span class="token number">16</span><span class="token punctuation">,</span>
+    <span class="token number">26</span><span class="token punctuation">,</span>	 <span class="token number">21</span><span class="token punctuation">,</span>  <span class="token number">23</span><span class="token punctuation">,</span>  <span class="token number">36</span><span class="token punctuation">,</span>  <span class="token number">50</span><span class="token punctuation">,</span>   <span class="token number">45</span><span class="token punctuation">,</span>	<span class="token number">45</span><span class="token punctuation">,</span>	 <span class="token number">49</span><span class="token punctuation">,</span>
+    <span class="token number">57</span><span class="token punctuation">,</span>  <span class="token number">43</span><span class="token punctuation">,</span>  <span class="token number">40</span><span class="token punctuation">,</span>  <span class="token number">44</span><span class="token punctuation">,</span>  <span class="token number">52</span><span class="token punctuation">,</span>   <span class="token number">43</span><span class="token punctuation">,</span>	<span class="token number">42</span><span class="token punctuation">,</span>	 <span class="token number">45</span><span class="token punctuation">,</span>
+    <span class="token number">52</span><span class="token punctuation">,</span>	 <span class="token number">41</span><span class="token punctuation">,</span>  <span class="token number">39</span><span class="token punctuation">,</span>  <span class="token number">41</span><span class="token punctuation">,</span>  <span class="token number">48</span><span class="token punctuation">,</span>   <span class="token number">35</span><span class="token punctuation">,</span>	<span class="token number">34</span><span class="token punctuation">,</span>	 <span class="token number">35</span><span class="token punctuation">,</span>
+    <span class="token number">42</span><span class="token punctuation">,</span>	 <span class="token number">34</span><span class="token punctuation">,</span>  <span class="token number">36</span><span class="token punctuation">,</span>  <span class="token number">43</span><span class="token punctuation">,</span>  <span class="token number">55</span><span class="token punctuation">,</span>   <span class="token number">48</span><span class="token punctuation">,</span>	<span class="token number">54</span><span class="token punctuation">,</span>	 <span class="token number">65</span><span class="token punctuation">,</span>
+    <span class="token number">80</span><span class="token punctuation">,</span>	 <span class="token number">70</span><span class="token punctuation">,</span>  <span class="token number">74</span><span class="token punctuation">,</span>  <span class="token number">85</span><span class="token punctuation">,</span>  <span class="token number">101</span><span class="token punctuation">,</span>  <span class="token number">89</span><span class="token punctuation">,</span>	<span class="token number">88</span><span class="token punctuation">,</span>	 <span class="token number">90</span><span class="token punctuation">,</span>
+    <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">87</span><span class="token punctuation">,</span>  <span class="token number">88</span><span class="token punctuation">,</span>  <span class="token number">89</span><span class="token punctuation">,</span>	<span class="token number">104</span><span class="token punctuation">,</span>  <span class="token number">89</span><span class="token punctuation">,</span>	<span class="token number">89</span><span class="token punctuation">,</span>	 <span class="token number">90</span><span class="token punctuation">,</span>
+    <span class="token number">106</span><span class="token punctuation">,</span> <span class="token number">96</span><span class="token punctuation">,</span>  <span class="token number">94</span><span class="token punctuation">,</span>  <span class="token number">99</span><span class="token punctuation">,</span>	<span class="token number">109</span><span class="token punctuation">,</span>  <span class="token number">99</span><span class="token punctuation">,</span>	<span class="token number">96</span><span class="token punctuation">,</span>	 <span class="token number">102</span><span class="token punctuation">,</span><span class="token punctuation">]</span>
+
+<span class="token triple-quoted-string string">""" 所需机械臂个数 x """</span>
+need_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> weeks<span class="token punctuation">:</span>
+    num <span class="token operator">=</span> need_body_num<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">4</span>
+    need_arms_num<span class="token punctuation">.</span>append<span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"x=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>need_arms_num<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token format-spec">8]</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+<span class="token triple-quoted-string string">""" 保养数量 y """</span>
+maintain_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">104</span>
+<span class="token triple-quoted-string string">""" 剩余数量 z"""</span>
+remain_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">104</span>
+<span class="token triple-quoted-string string">""" 购买数量 w """</span>
+add_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">104</span>
+<span class="token triple-quoted-string string">""" 下次可用数量 u """</span>
+usable_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">104</span>
+<span class="token triple-quoted-string string">""" 总数量 t """</span>
+total_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">104</span>
+
+<span class="token keyword">def</span> <span class="token function">FunOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    maintain_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+    remain_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">6</span>
+    add_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">14</span>
+    usable_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">6</span>
+    total_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">64</span>
+
+    <span class="token keyword">for</span> pos <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        maintain_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> need_arms_num<span class="token punctuation">[</span>pos<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+        remain_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> add_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> usable_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> need_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        usable_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> maintain_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> remain_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>need_arms_num<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> usable_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            add_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> need_arms_num<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> usable_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            add_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+        total_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> need_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> usable_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+
+FunOne<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">"""输出结果"""</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"y=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>maintain_num<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token format-spec">8]</span><span class="token punctuation">&#125;</span></span><span class="token string">\nz=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>remain_num<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token format-spec">8]</span><span class="token punctuation">&#125;</span></span><span class="token string">\nw=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>add_num<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token format-spec">8]</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"u=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>usable_num<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token format-spec">8]</span><span class="token punctuation">&#125;</span></span><span class="token string">\nt=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>total_num<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token format-spec">8]</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>第二问代码</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> math
+
+<span class="token triple-quoted-string string">""" 周数"""</span>
+weeks <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">104</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">""" 需求机器人数量 x """</span>
+need_body_num <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token number">11</span><span class="token punctuation">,</span>	 <span class="token number">5</span><span class="token punctuation">,</span>	  <span class="token number">4</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>	<span class="token number">16</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>	<span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>
+    <span class="token number">13</span><span class="token punctuation">,</span>	 <span class="token number">6</span><span class="token punctuation">,</span>	  <span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>   <span class="token number">12</span><span class="token punctuation">,</span>   <span class="token number">5</span><span class="token punctuation">,</span>	<span class="token number">4</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>
+    <span class="token number">9</span><span class="token punctuation">,</span>	 <span class="token number">5</span><span class="token punctuation">,</span>	  <span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">11</span><span class="token punctuation">,</span>  <span class="token number">29</span><span class="token punctuation">,</span>   <span class="token number">21</span><span class="token punctuation">,</span>	<span class="token number">17</span><span class="token punctuation">,</span>  <span class="token number">20</span><span class="token punctuation">,</span>
+    <span class="token number">27</span><span class="token punctuation">,</span>	 <span class="token number">13</span><span class="token punctuation">,</span>  <span class="token number">9</span><span class="token punctuation">,</span>   <span class="token number">10</span><span class="token punctuation">,</span>  <span class="token number">16</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>	<span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>
+    <span class="token number">11</span><span class="token punctuation">,</span>	 <span class="token number">5</span><span class="token punctuation">,</span>	  <span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>   <span class="token number">12</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>	<span class="token number">7</span><span class="token punctuation">,</span>   <span class="token number">10</span><span class="token punctuation">,</span>
+    <span class="token number">15</span><span class="token punctuation">,</span>	 <span class="token number">10</span><span class="token punctuation">,</span>  <span class="token number">9</span><span class="token punctuation">,</span>   <span class="token number">11</span><span class="token punctuation">,</span>  <span class="token number">15</span><span class="token punctuation">,</span>   <span class="token number">10</span><span class="token punctuation">,</span>	<span class="token number">10</span><span class="token punctuation">,</span>	 <span class="token number">16</span><span class="token punctuation">,</span>
+    <span class="token number">26</span><span class="token punctuation">,</span>	 <span class="token number">21</span><span class="token punctuation">,</span>  <span class="token number">23</span><span class="token punctuation">,</span>  <span class="token number">36</span><span class="token punctuation">,</span>  <span class="token number">50</span><span class="token punctuation">,</span>   <span class="token number">45</span><span class="token punctuation">,</span>	<span class="token number">45</span><span class="token punctuation">,</span>	 <span class="token number">49</span><span class="token punctuation">,</span>
+    <span class="token number">57</span><span class="token punctuation">,</span>  <span class="token number">43</span><span class="token punctuation">,</span>  <span class="token number">40</span><span class="token punctuation">,</span>  <span class="token number">44</span><span class="token punctuation">,</span>  <span class="token number">52</span><span class="token punctuation">,</span>   <span class="token number">43</span><span class="token punctuation">,</span>	<span class="token number">42</span><span class="token punctuation">,</span>	 <span class="token number">45</span><span class="token punctuation">,</span>
+    <span class="token number">52</span><span class="token punctuation">,</span>	 <span class="token number">41</span><span class="token punctuation">,</span>  <span class="token number">39</span><span class="token punctuation">,</span>  <span class="token number">41</span><span class="token punctuation">,</span>  <span class="token number">48</span><span class="token punctuation">,</span>   <span class="token number">35</span><span class="token punctuation">,</span>	<span class="token number">34</span><span class="token punctuation">,</span>	 <span class="token number">35</span><span class="token punctuation">,</span>
+    <span class="token number">42</span><span class="token punctuation">,</span>	 <span class="token number">34</span><span class="token punctuation">,</span>  <span class="token number">36</span><span class="token punctuation">,</span>  <span class="token number">43</span><span class="token punctuation">,</span>  <span class="token number">55</span><span class="token punctuation">,</span>   <span class="token number">48</span><span class="token punctuation">,</span>	<span class="token number">54</span><span class="token punctuation">,</span>	 <span class="token number">65</span><span class="token punctuation">,</span>
+    <span class="token number">80</span><span class="token punctuation">,</span>	 <span class="token number">70</span><span class="token punctuation">,</span>  <span class="token number">74</span><span class="token punctuation">,</span>  <span class="token number">85</span><span class="token punctuation">,</span>  <span class="token number">101</span><span class="token punctuation">,</span>  <span class="token number">89</span><span class="token punctuation">,</span>	<span class="token number">88</span><span class="token punctuation">,</span>	 <span class="token number">90</span><span class="token punctuation">,</span>
+    <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">87</span><span class="token punctuation">,</span>  <span class="token number">88</span><span class="token punctuation">,</span>  <span class="token number">89</span><span class="token punctuation">,</span>	<span class="token number">104</span><span class="token punctuation">,</span>  <span class="token number">89</span><span class="token punctuation">,</span>	<span class="token number">89</span><span class="token punctuation">,</span>	 <span class="token number">90</span><span class="token punctuation">,</span>
+    <span class="token number">106</span><span class="token punctuation">,</span> <span class="token number">96</span><span class="token punctuation">,</span>  <span class="token number">94</span><span class="token punctuation">,</span>  <span class="token number">99</span><span class="token punctuation">,</span>	<span class="token number">109</span><span class="token punctuation">,</span>  <span class="token number">99</span><span class="token punctuation">,</span>	<span class="token number">96</span><span class="token punctuation">,</span>	 <span class="token number">102</span><span class="token punctuation">,</span><span class="token punctuation">]</span>
+
+<span class="token triple-quoted-string string">""" 所需机械臂个数 x """</span>
+need_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> weeks<span class="token punctuation">:</span>
+    num <span class="token operator">=</span> need_body_num<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">4</span>
+    need_arms_num<span class="token punctuation">.</span>append<span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+
+<span class="token triple-quoted-string string">""" 保养机器人数量 y """</span>
+maintain_body_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 保养机械臂数量 y' """</span>
+maintain_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 剩余机器人数量 z """</span>
+remain_body_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 剩余机械臂数量 z' """</span>
+remain_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 购买机械臂数量 w """</span>
+add_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 购买机器人数量 m """</span>
+add_body_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 下次机器人可用数量 u """</span>
+usable_body_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 下次机械臂可用数量 u' """</span>
+usable_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 总机器人数量 t """</span>
+total_body_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 机械臂总数量 t' """</span>
+total_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 计数器 """</span>
+times <span class="token operator">=</span> <span class="token number">0</span>
+
+<span class="token keyword">def</span> <span class="token function">Fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    maintain_body_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+    maintain_arms_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+    remain_body_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">2</span>
+    remain_arms_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">6</span>
+    add_body_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">3</span>
+    add_arms_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">14</span>
+    usable_body_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">2</span>
+    usable_arms_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">6</span>
+    total_body_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">16</span>
+    total_arms_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">64</span>
+    pos <span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token keyword">global</span> times
+
+    <span class="token keyword">while</span> pos <span class="token operator">&lt;</span> <span class="token number">103</span><span class="token punctuation">:</span>
+        maintain_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">round</span><span class="token punctuation">(</span>need_body_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">0.8</span><span class="token punctuation">)</span>
+        maintain_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> maintain_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">4</span>
+        remain_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> add_body_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> usable_body_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> need_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        remain_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> add_arms_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> usable_arms_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> need_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        usable_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> maintain_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> remain_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        usable_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> maintain_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> remain_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        <span class="token triple-quoted-string string">""" 购买判断 """</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>need_body_num<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> usable_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            add_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> need_body_num<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> usable_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+            add_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> add_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">4</span>
+
+        total_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> need_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> usable_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> add_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        total_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> need_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> usable_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> add_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        <span class="token triple-quoted-string string">""" 熟练手判断 """</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">10</span><span class="token operator">*</span>remain_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">&lt;</span> add_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            temp <span class="token operator">=</span> pos
+            <span class="token keyword">while</span><span class="token punctuation">(</span>temp <span class="token operator">>=</span> <span class="token number">0</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token number">10</span><span class="token operator">*</span>remain_arms_num<span class="token punctuation">[</span>temp<span class="token punctuation">]</span> <span class="token operator">&lt;</span> add_arms_num<span class="token punctuation">[</span>temp<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                counts1 <span class="token operator">=</span> math<span class="token punctuation">.</span>ceil<span class="token punctuation">(</span><span class="token punctuation">(</span>add_arms_num<span class="token punctuation">[</span>temp<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token number">10</span><span class="token operator">*</span>remain_arms_num<span class="token punctuation">[</span>temp<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span>
+                add_arms_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts1
+                remain_arms_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts1
+                usable_arms_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts1
+                total_arms_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts1
+                counts2 <span class="token operator">=</span> math<span class="token punctuation">.</span>ceil<span class="token punctuation">(</span>total_arms_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">-</span> total_body_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+                add_body_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts2
+                remain_body_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts2
+                usable_body_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts2
+                temp <span class="token operator">-=</span> <span class="token number">1</span>
+                times <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            pos <span class="token operator">+=</span> <span class="token number">1</span>
+
+Fun<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"需要\n x = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>need_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n x' = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>need_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"保养\n y = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>maintain_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n y' = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>maintain_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"剩余\n z = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>remain_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n z' = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>remain_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"购买\n m = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>add_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n w = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>add_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"可用\n u = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>usable_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n u' = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>usable_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"总数\n t = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>total_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n t' = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>total_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>times<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>第三问代码</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> math
+
+<span class="token triple-quoted-string string">""" 周数"""</span>
+weeks <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">104</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">""" 需求机器人数量 x """</span>
+need_body_num <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token number">11</span><span class="token punctuation">,</span>	 <span class="token number">5</span><span class="token punctuation">,</span>	  <span class="token number">4</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>	<span class="token number">16</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>	<span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>
+    <span class="token number">13</span><span class="token punctuation">,</span>	 <span class="token number">6</span><span class="token punctuation">,</span>	  <span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>   <span class="token number">12</span><span class="token punctuation">,</span>   <span class="token number">5</span><span class="token punctuation">,</span>	<span class="token number">4</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>
+    <span class="token number">9</span><span class="token punctuation">,</span>	 <span class="token number">5</span><span class="token punctuation">,</span>	  <span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">11</span><span class="token punctuation">,</span>  <span class="token number">29</span><span class="token punctuation">,</span>   <span class="token number">21</span><span class="token punctuation">,</span>	<span class="token number">17</span><span class="token punctuation">,</span>  <span class="token number">20</span><span class="token punctuation">,</span>
+    <span class="token number">27</span><span class="token punctuation">,</span>	 <span class="token number">13</span><span class="token punctuation">,</span>  <span class="token number">9</span><span class="token punctuation">,</span>   <span class="token number">10</span><span class="token punctuation">,</span>  <span class="token number">16</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>	<span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>
+    <span class="token number">11</span><span class="token punctuation">,</span>	 <span class="token number">5</span><span class="token punctuation">,</span>	  <span class="token number">5</span><span class="token punctuation">,</span>   <span class="token number">6</span><span class="token punctuation">,</span>   <span class="token number">12</span><span class="token punctuation">,</span>   <span class="token number">7</span><span class="token punctuation">,</span>	<span class="token number">7</span><span class="token punctuation">,</span>   <span class="token number">10</span><span class="token punctuation">,</span>
+    <span class="token number">15</span><span class="token punctuation">,</span>	 <span class="token number">10</span><span class="token punctuation">,</span>  <span class="token number">9</span><span class="token punctuation">,</span>   <span class="token number">11</span><span class="token punctuation">,</span>  <span class="token number">15</span><span class="token punctuation">,</span>   <span class="token number">10</span><span class="token punctuation">,</span>	<span class="token number">10</span><span class="token punctuation">,</span>	 <span class="token number">16</span><span class="token punctuation">,</span>
+    <span class="token number">26</span><span class="token punctuation">,</span>	 <span class="token number">21</span><span class="token punctuation">,</span>  <span class="token number">23</span><span class="token punctuation">,</span>  <span class="token number">36</span><span class="token punctuation">,</span>  <span class="token number">50</span><span class="token punctuation">,</span>   <span class="token number">45</span><span class="token punctuation">,</span>	<span class="token number">45</span><span class="token punctuation">,</span>	 <span class="token number">49</span><span class="token punctuation">,</span>
+    <span class="token number">57</span><span class="token punctuation">,</span>  <span class="token number">43</span><span class="token punctuation">,</span>  <span class="token number">40</span><span class="token punctuation">,</span>  <span class="token number">44</span><span class="token punctuation">,</span>  <span class="token number">52</span><span class="token punctuation">,</span>   <span class="token number">43</span><span class="token punctuation">,</span>	<span class="token number">42</span><span class="token punctuation">,</span>	 <span class="token number">45</span><span class="token punctuation">,</span>
+    <span class="token number">52</span><span class="token punctuation">,</span>	 <span class="token number">41</span><span class="token punctuation">,</span>  <span class="token number">39</span><span class="token punctuation">,</span>  <span class="token number">41</span><span class="token punctuation">,</span>  <span class="token number">48</span><span class="token punctuation">,</span>   <span class="token number">35</span><span class="token punctuation">,</span>	<span class="token number">34</span><span class="token punctuation">,</span>	 <span class="token number">35</span><span class="token punctuation">,</span>
+    <span class="token number">42</span><span class="token punctuation">,</span>	 <span class="token number">34</span><span class="token punctuation">,</span>  <span class="token number">36</span><span class="token punctuation">,</span>  <span class="token number">43</span><span class="token punctuation">,</span>  <span class="token number">55</span><span class="token punctuation">,</span>   <span class="token number">48</span><span class="token punctuation">,</span>	<span class="token number">54</span><span class="token punctuation">,</span>	 <span class="token number">65</span><span class="token punctuation">,</span>
+    <span class="token number">80</span><span class="token punctuation">,</span>	 <span class="token number">70</span><span class="token punctuation">,</span>  <span class="token number">74</span><span class="token punctuation">,</span>  <span class="token number">85</span><span class="token punctuation">,</span>  <span class="token number">101</span><span class="token punctuation">,</span>  <span class="token number">89</span><span class="token punctuation">,</span>	<span class="token number">88</span><span class="token punctuation">,</span>	 <span class="token number">90</span><span class="token punctuation">,</span>
+    <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">87</span><span class="token punctuation">,</span>  <span class="token number">88</span><span class="token punctuation">,</span>  <span class="token number">89</span><span class="token punctuation">,</span>	<span class="token number">104</span><span class="token punctuation">,</span>  <span class="token number">89</span><span class="token punctuation">,</span>	<span class="token number">89</span><span class="token punctuation">,</span>	 <span class="token number">90</span><span class="token punctuation">,</span>
+    <span class="token number">106</span><span class="token punctuation">,</span> <span class="token number">96</span><span class="token punctuation">,</span>  <span class="token number">94</span><span class="token punctuation">,</span>  <span class="token number">99</span><span class="token punctuation">,</span>	<span class="token number">109</span><span class="token punctuation">,</span>  <span class="token number">99</span><span class="token punctuation">,</span>	<span class="token number">96</span><span class="token punctuation">,</span>	 <span class="token number">102</span><span class="token punctuation">,</span><span class="token punctuation">]</span>
+
+<span class="token triple-quoted-string string">""" 所需机械臂个数 x """</span>
+need_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> weeks<span class="token punctuation">:</span>
+    num <span class="token operator">=</span> need_body_num<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">4</span>
+    need_arms_num<span class="token punctuation">.</span>append<span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+
+<span class="token triple-quoted-string string">""" 保养机器人数量 y """</span>
+maintain_body_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 保养机械臂数量 y' """</span>
+maintain_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 剩余机器人数量 z """</span>
+remain_body_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 剩余机械臂数量 z' """</span>
+remain_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 购买机械臂数量 w """</span>
+add_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 购买机器人数量 m """</span>
+add_body_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 下次机器人可用数量 u """</span>
+usable_body_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 下次机械臂可用数量 u' """</span>
+usable_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 总机器人数量 t """</span>
+total_body_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 机械臂总数量 t' """</span>
+total_arms_num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">105</span>
+<span class="token triple-quoted-string string">""" 计数器 """</span>
+times <span class="token operator">=</span> <span class="token number">0</span>
+
+<span class="token keyword">def</span> <span class="token function">Fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    maintain_body_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+    maintain_arms_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+    remain_body_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">2</span>
+    remain_arms_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">6</span>
+    add_body_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">3</span>
+    add_arms_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">14</span>
+    usable_body_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">2</span>
+    usable_arms_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">6</span>
+    total_body_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">16</span>
+    total_arms_num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">64</span>
+    pos <span class="token operator">=</span> <span class="token number">1</span>
+
+    <span class="token keyword">while</span> pos <span class="token operator">&lt;</span> <span class="token number">103</span><span class="token punctuation">:</span>
+        maintain_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">round</span><span class="token punctuation">(</span>need_body_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">0.9</span><span class="token punctuation">)</span>
+        maintain_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> maintain_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">4</span>
+        remain_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> add_body_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> usable_body_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> need_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        remain_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> add_arms_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> usable_arms_num<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> need_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        usable_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> maintain_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> remain_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        usable_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> maintain_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> remain_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        <span class="token triple-quoted-string string">""" 购买判断 """</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>need_body_num<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> usable_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            add_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> need_body_num<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> usable_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+            add_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> add_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">4</span>
+
+        total_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> need_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> usable_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> add_body_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        total_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> need_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> usable_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">+</span> add_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        <span class="token triple-quoted-string string">""" 熟练手判断 """</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">20</span><span class="token operator">*</span>remain_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">&lt;</span> add_arms_num<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            temp <span class="token operator">=</span> pos
+            <span class="token keyword">while</span><span class="token punctuation">(</span>temp <span class="token operator">>=</span> <span class="token number">0</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token number">20</span><span class="token operator">*</span>remain_arms_num<span class="token punctuation">[</span>temp<span class="token punctuation">]</span> <span class="token operator">&lt;</span> add_arms_num<span class="token punctuation">[</span>temp<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                counts1 <span class="token operator">=</span> math<span class="token punctuation">.</span>ceil<span class="token punctuation">(</span><span class="token punctuation">(</span>add_arms_num<span class="token punctuation">[</span>temp<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token number">20</span><span class="token operator">*</span>remain_arms_num<span class="token punctuation">[</span>temp<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">20</span><span class="token punctuation">)</span>
+                add_arms_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts1
+                remain_arms_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts1
+                usable_arms_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts1
+                total_arms_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts1
+                counts2 <span class="token operator">=</span> math<span class="token punctuation">.</span>ceil<span class="token punctuation">(</span>total_arms_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">-</span> total_body_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+                add_body_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts2
+                remain_body_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts2
+                usable_body_num<span class="token punctuation">[</span>temp <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> counts2
+                temp <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            pos <span class="token operator">+=</span> <span class="token number">1</span>
+
+Fun<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"需要\n x = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>need_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n x' = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>need_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"保养\n y = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>maintain_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n y' = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>maintain_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"剩余\n z = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>remain_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n z' = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>remain_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"购买\n m = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>add_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n w = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>add_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"可用\n u = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>usable_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n u' = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>usable_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"总数\n t = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>total_body_num<span class="token punctuation">&#125;</span></span><span class="token string">\n t' = </span><span class="token interpolation"><span class="token punctuation">&#123;</span>total_arms_num<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                                    <span class="chip bg-color">数学建模</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/12/04/%E7%94%B5%E5%8D%8F%E8%80%83%E6%A0%B8%E5%B7%A5%E7%A8%8B%E6%8A%A5%E5%91%8A--%E6%A0%97%E9%9B%8D%E6%9D%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="电协考核工程报告">
+                        
+                        <span class="card-title">电协考核工程报告</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-04
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/" class="post-category">
+                                    单片机
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
+                        <span class="chip bg-color">单片机</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/05/03/%E8%B4%9F%E8%BD%BD%E7%9B%91%E6%B5%8B%E5%99%A8(B%E9%A2%98)/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="负载监测器(B题)">
+                        
+                        <span class="card-title">负载监测器(B题)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/" class="post-category">
+                                    单片机
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
+                        <span class="chip bg-color">单片机</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">Lazurit</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/ALTdeveloper" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2813409600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2813409600" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2813409600" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
