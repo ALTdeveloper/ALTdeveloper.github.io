@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="负载监测器(B题), 电子">
-    <meta name="description" content="负载监测器(B题)一、系统方案本系统主要由单片机控制模块、2.4GHz通讯模块、电源线负载采样模块组成，下面分别介绍这几个模块的选择
-1. 2.4GHz通信器件的选择市面上拥有多种2.4G无线通信器件可供选择，如esp系列，LoRa器件，R">
+    <meta name="keywords" content="电协考核工程报告, 电子">
+    <meta name="description" content="电协考核工程报告前言这是当初加入实验室时考核工程的报告，顺便一起发上来，做的是联网可控的oled时钟。代码可见github[ALTdeveloper&amp;#x2F;ICEC_EnterTest: 电协考核 (github.com)]
+摘要本工程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>负载监测器(B题) | Lazurit</title>
+    <title>电协考核工程报告 | Lazurit</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">负载监测器(B题)</h1>
+                    <h1 class="description center-align post-title">电协考核工程报告</h1>
                 </div>
             </div>
         </div>
@@ -456,21 +456,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-05-03
+                    2021-12-04
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-18
+                    2022-06-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.2k
                 </div>
                 
 
@@ -495,22 +495,143 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="负载监测器-B题"><a href="#负载监测器-B题" class="headerlink" title="负载监测器(B题)"></a>负载监测器(B题)</h1><h2 id="一、系统方案"><a href="#一、系统方案" class="headerlink" title="一、系统方案"></a>一、系统方案</h2><p>本系统主要由单片机控制模块、2.4GHz通讯模块、电源线负载采样模块组成，下面分别介绍这几个模块的选择</p>
-<h4 id="1-2-4GHz通信器件的选择"><a href="#1-2-4GHz通信器件的选择" class="headerlink" title="1. 2.4GHz通信器件的选择"></a>1. 2.4GHz通信器件的选择</h4><p>市面上拥有多种2.4G无线通信器件可供选择，如esp系列，LoRa器件，RF24L01等。LoRa器件，RF24L01等通信模块，其大部分使用SPI方式进行通信且不能编程，相比之下，esp系列可以进行编程来适应需求场景，且其可以通过arduino编译器进行开发，简单快捷。</p>
-<p>esp系列有多种型号可供选择，我们选择了esp8266开发板进行开发，虽然相比esp01s其体积变大很多，但胜在开发简单。</p>
-<h4 id="2-放大芯片的选择"><a href="#2-放大芯片的选择" class="headerlink" title="2. 放大芯片的选择"></a>2. 放大芯片的选择</h4><h3 id="3-51开发板引脚布局选择"><a href="#3-51开发板引脚布局选择" class="headerlink" title="3. 51开发板引脚布局选择"></a>3. 51开发板引脚布局选择</h3><p>方案中使用的51主控来自启航班时使用的51单片机，板上功能齐全，自带数码管和oled，使用方便。</p>
-<p>其原理图</p>
-<p><img src="/%E8%B4%9F%E8%BD%BD%E7%9B%91%E6%B5%8B%E5%99%A8(B%E9%A2%98).assets/%E5%8D%95%E7%89%87%E6%9C%BA%E5%8E%9F%E7%90%86%E5%9B%BE.jpg" alt="单片机原理图"></p>
-<h4 id="主机方案"><a href="#主机方案" class="headerlink" title="主机方案"></a>主机方案</h4><p>主芯片STC12C5A60S2在P1口有8路10位高速A&#x2F;D转换器（逐次比较型ADC），为了不干扰ADC转换和损失ADC精度，避免发生串扰，故P1寄存器下其他IO口均不作为输出直接空置。将按键就近接入（P32,P33,P34）,外接LED到P37口。将串口和esp8266模块串口连接，供地，使用板载5V给esp8266供电。</p>
-<h4 id="接收机方案"><a href="#接收机方案" class="headerlink" title="接收机方案"></a>接收机方案</h4><p>开发板上提供了OLED供电，将SCL和SDA连接至单片机P11，P12。将串口和esp8266模块串口连接，供地，使用板载5V给esp8266供电。</p>
-<h2 id="二、系统理论分析与计算"><a href="#二、系统理论分析与计算" class="headerlink" title="二、系统理论分析与计算"></a>二、系统理论分析与计算</h2><h3 id="1-电磁感应理论分析"><a href="#1-电磁感应理论分析" class="headerlink" title="1.电磁感应理论分析"></a>1.电磁感应理论分析</h3><h3 id="2-电磁检测与放大电路的计算"><a href="#2-电磁检测与放大电路的计算" class="headerlink" title="2.电磁检测与放大电路的计算"></a>2.电磁检测与放大电路的计算</h3><h2 id="三、电路与程序设计"><a href="#三、电路与程序设计" class="headerlink" title="三、电路与程序设计"></a>三、电路与程序设计</h2><h3 id="1、电路的设计"><a href="#1、电路的设计" class="headerlink" title="1、电路的设计"></a>1、电路的设计</h3><h3 id="2、程序的设计"><a href="#2、程序的设计" class="headerlink" title="2、程序的设计"></a>2、程序的设计</h3><h4 id="（1）程序功能描述与设计思路"><a href="#（1）程序功能描述与设计思路" class="headerlink" title="（1）程序功能描述与设计思路"></a>（1）程序功能描述与设计思路</h4><h5 id="1、程序功能描述"><a href="#1、程序功能描述" class="headerlink" title="1、程序功能描述"></a>1、程序功能描述</h5><p>根据题目要求软件部分实现ADC采样，蜂鸣器、LED驱动，数码管显示和串口发送功能，从机实现串口不定长接收与字符串识别、OLED驱动功能</p>
-<h5 id="2、程序设计思路"><a href="#2、程序设计思路" class="headerlink" title="2、程序设计思路"></a>2、程序设计思路</h5><p>程序的核心功能为实现准确的ADC转换捕捉电压变化，为了保证精度和减小扰动，则需要添加滤波算法，采集噪声大部分为持续的高斯噪声和偶然但短暂的大幅扰动，故综合考量单片机性能和程序速度，选择递推中位值平均滤波法，其对于偶然出现的脉冲性干扰，可消除由其引起的采样值偏差。对周期干扰有良好的抑制作用，同时平滑度高，适于高频振荡的系统。</p>
-<p>同时，利用定时器中断发起ADC转换，在转换后判断得到的电压值是否超过用户设定电压值，决定是否进行报警，并将判断结果和ADC结果作为一个字符串发送给接收机，这样可以保证接收机的判断结果与主机同步。更行全局变量，主函数中的按键扫描函数执行并更新警告阈值，随后主函数中的数码管刷新函数将会显示新的值。</p>
-<p>对于从机，在接收到串口传输标志位之后进行字符串识别并清除缓冲区，刷新OLED</p>
-<h4 id="（2）程序流程图"><a href="#（2）程序流程图" class="headerlink" title="（2）程序流程图"></a>（2）程序流程图</h4><p><img src="/%E8%B4%9F%E8%BD%BD%E7%9B%91%E6%B5%8B%E5%99%A8(B%E9%A2%98).assets/image-20220503142701509-16515592235222.png" alt="image-20220503142701509"></p>
-<h2 id="四、测试方案与测试结果"><a href="#四、测试方案与测试结果" class="headerlink" title="四、测试方案与测试结果"></a>四、测试方案与测试结果</h2><h3 id="1、测试方案"><a href="#1、测试方案" class="headerlink" title="1、测试方案"></a>1、测试方案</h3><h4 id="1-硬件测试"><a href="#1-硬件测试" class="headerlink" title="1.硬件测试"></a>1.硬件测试</h4><h4 id="2-软件测试"><a href="#2-软件测试" class="headerlink" title="2.软件测试"></a>2.软件测试</h4><h4 id="3-硬件软件联调"><a href="#3-硬件软件联调" class="headerlink" title="3.硬件软件联调"></a>3.硬件软件联调</h4><h3 id="2、测试条件与仪器"><a href="#2、测试条件与仪器" class="headerlink" title="2、测试条件与仪器"></a>2、测试条件与仪器</h3><p>测试条件：检查多次，代码逻辑与设计无误，硬件电路焊接准确，并且检查无误，硬件电路保证无虚焊。</p>
-<p>测试仪器：示波器，万用表。</p>
-<h3 id="3、测试结果及分析"><a href="#3、测试结果及分析" class="headerlink" title="3、测试结果及分析"></a>3、测试结果及分析</h3><h2 id="五、结论与心得"><a href="#五、结论与心得" class="headerlink" title="五、结论与心得"></a>五、结论与心得</h2><p>通过这次比赛，我们学习到了如何检测220v交流电上的负载，利用工字电感检测交流电产生的磁信号</p>
+                <h1 id="电协考核工程报告"><a href="#电协考核工程报告" class="headerlink" title="电协考核工程报告"></a>电协考核工程报告</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这是当初加入实验室时考核工程的报告，顺便一起发上来，做的是联网可控的oled时钟。代码可见github[<a target="_blank" rel="noopener" href="https://github.com/ALTdeveloper/ICEC_EnterTest">ALTdeveloper&#x2F;ICEC_EnterTest: 电协考核 (github.com)</a>]</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本工程完成了电协考核题目中C题，以STC12C5A60S2作为主控，esp8266作为通信模块，ds1302作为时间掉电储存模块，以oled屏幕作为输出。可实现时间显示，正计时倒计时功能，掉电时间保存，无线更改时间。</p>
+<p>关键词 时钟 无线 计时</p>
+<h2 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h2><h3 id="1-C51程序结构"><a href="#1-C51程序结构" class="headerlink" title="1.C51程序结构"></a>1.C51程序结构</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">库文件
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;STC12C5A60S2.H></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"oled.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Lazurit_eeC_rebulid1.h"</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_oled初始化
+<span class="token operator">|</span>_等待<span class="token number">8266</span>授时
+<span class="token operator">|</span>_片上定时器初始化
+
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_按键检测
+	<span class="token operator">|</span>_按键一
+		<span class="token operator">|</span>_正计时启动
+	<span class="token operator">|</span>_按键二
+		<span class="token operator">|</span>_倒计时初始化与启动
+	<span class="token operator">|</span>_按键三
+		<span class="token operator">|</span>_时间更改
+		
+<span class="token function">Timer0_Routine</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_计时
+<span class="token operator">|</span>_刷新oled时间区
+
+<span class="token function">Timer1_Routine</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_正计时模式
+	<span class="token operator">|</span>_时间增加
+	<span class="token operator">|</span>_oled刷新
+<span class="token operator">|</span>_倒计时模式
+	<span class="token operator">|</span>_时间减少
+	<span class="token operator">|</span>_oled刷新
+	
+<span class="token function">serial</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_接收六个字符后更新时间<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">Lazurit_eeC_rebulid1<span class="token punctuation">.</span>h
+
+<span class="token keyword">void</span> <span class="token function">UartInit</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token comment">//串口初始化9600bps@11.0592MHz</span>
+<span class="token keyword">void</span> <span class="token function">Timer0Init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token comment">//对定时器0初始化</span>
+<span class="token keyword">void</span> <span class="token function">Timer1Init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token comment">//对定时器1初始化</span>
+<span class="token keyword">void</span> <span class="token function">oled_flash</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span> work<span class="token punctuation">)</span><span class="token comment">//刷新oled</span>
+<span class="token keyword">void</span> <span class="token function">oled_set_flash</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//set状态下刷新oled</span>
+<span class="token keyword">void</span> <span class="token function">countdown_reset</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token comment">//倒计时初始化</span>
+<span class="token keyword">void</span> <span class="token function">time_set</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token comment">//时间设置</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//OLED控制用函数</span>
+<span class="token keyword">void</span> <span class="token function">OLED_WR_Byte</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> dat<span class="token punctuation">,</span><span class="token keyword">unsigned</span> cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token keyword">void</span> <span class="token function">OLED_Display_On</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">OLED_Display_Off</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		    
+<span class="token keyword">void</span> <span class="token function">OLED_Init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">OLED_Clear</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">OLED_DrawPoint</span><span class="token punctuation">(</span>u8 x<span class="token punctuation">,</span>u8 y<span class="token punctuation">,</span>u8 t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">OLED_Fill</span><span class="token punctuation">(</span>u8 x1<span class="token punctuation">,</span>u8 y1<span class="token punctuation">,</span>u8 x2<span class="token punctuation">,</span>u8 y2<span class="token punctuation">,</span>u8 dot<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">OLED_ShowChar</span><span class="token punctuation">(</span>u8 x<span class="token punctuation">,</span>u8 y<span class="token punctuation">,</span>u8 chr<span class="token punctuation">,</span>u8 Char_Size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">OLED_ShowNum</span><span class="token punctuation">(</span>u8 x<span class="token punctuation">,</span>u8 y<span class="token punctuation">,</span>u32 num<span class="token punctuation">,</span>u8 len<span class="token punctuation">,</span>u8 size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">OLED_ShowString</span><span class="token punctuation">(</span>u8 x<span class="token punctuation">,</span>u8 y<span class="token punctuation">,</span> u8 <span class="token operator">*</span>p<span class="token punctuation">,</span>u8 Char_Size<span class="token punctuation">)</span><span class="token punctuation">;</span>	 
+<span class="token keyword">void</span> <span class="token function">OLED_Set_Pos</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span> x<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">char</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">OLED_ShowCHinese</span><span class="token punctuation">(</span>u8 x<span class="token punctuation">,</span>u8 y<span class="token punctuation">,</span>u8 no<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">OLED_DrawBMP</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span> x0<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">char</span> y0<span class="token punctuation">,</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span> x1<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">char</span> y1<span class="token punctuation">,</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span> BMP<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">Delay_50ms</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> Del_50ms<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">Delay_1ms</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> Del_1ms<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">fill_picture</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span> fill_Data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">Picture</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">IIC_Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">IIC_Stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">Write_IIC_Command</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span> IIC_Command<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">Write_IIC_Data</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span> IIC_Data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">Write_IIC_Byte</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span> IIC_Byte<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">IIC_Wait_Ack</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//该库为oled商家提供，有部分函数没有在该项目使用，可优化减小程序尺寸</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-arduino程序结构"><a href="#2-arduino程序结构" class="headerlink" title="2.arduino程序结构"></a>2.arduino程序结构</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">库文件
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;ESP8266WiFi.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;WiFiUdp.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;DS1302.h></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_ds1302初始化
+<span class="token operator">|</span>_io口初始化
+<span class="token operator">|</span>_串口调试和udp初始化
+<span class="token operator">|</span>_从ds1302读时间
+<span class="token operator">|</span>_串口发送给<span class="token number">51</span>
+
+<span class="token keyword">void</span> <span class="token function">loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_等待udp
+	<span class="token operator">|</span>_直接把时间给<span class="token number">51</span>
+	<span class="token operator">|</span>_更新<span class="token number">1302</span>的时间
+	
+<span class="token keyword">void</span> <span class="token function">udp2ds1302time</span><span class="token punctuation">(</span><span class="token keyword">char</span> udp_time<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_构造结构体，发送给ds1302
+
+<span class="token keyword">void</span> <span class="token function">time51_Init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_从模块获得时间结构体
+<span class="token operator">|</span>_拆分结构体组装成字符串
+<span class="token operator">|</span>_发送给<span class="token number">51</span>
+
+<span class="token keyword">void</span> <span class="token function">send_51time</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_逐一发送字符给<span class="token number">51</span>
+
+<span class="token keyword">void</span> <span class="token function">time2anum</span><span class="token punctuation">(</span><span class="token keyword">int</span> time_num<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> target_num<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_把十位数转个位数
+
+<span class="token keyword">void</span> <span class="token function">setTime</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token operator">|</span>_用结构体更新时间<span class="token comment">//该函数并没有启用</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-硬件接口"><a href="#3-硬件接口" class="headerlink" title="3.硬件接口"></a>3.硬件接口</h3><p>电木板子为手工走线，主要是为了调试起来比较方便，各模块不会乱七八糟的。</p>
+<pre class="line-numbers language-none"><code class="language-none">	 ds1302              
+电源			蜂鸣器
+接口			 接口
+
+ oled接口
+ 				 初始化信号口
+oled信号接口		 串口<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> ds1302为5pin 最左侧vcc</p>
+<p>电源接口 上侧vcc3.3v,下侧gnd</p>
+<p>oled接口 上侧gnd</p>
+<p>oled信号口 左侧scl右侧sda,对应51上p10和p11</p>
+<p>蜂鸣器接口 上侧gnd，下侧接51上p00</p>
+<p>初始化信号接口 接51的p17</p>
+<p>串口 上侧为8266的rx下侧为8266的tx</p>
+<h2 id="操作手册"><a href="#操作手册" class="headerlink" title="操作手册"></a>操作手册</h2><p>启动后等待8266连接WiFi，此时oled有提示。随后51将会被ds1302授时。按下按键1正计时启动，再次按下停止；按下按键2倒计时进入初始化，此时按下按键一倒计时时间增加，按下按键二倒计时时间减少（有防溢出功能），按下按键三开始倒计时，结束后蜂鸣器响，退出倒计时功能。按下按键三进入更改时间功能，此时按下按键一时间增加，按下按键二时间减少，可正常实现时间进位退位，按下按键三保存。</p>
+<p>若想使用wifi更新时间功能，请向esp8266发送以下格式字符串</p>
+<pre class="line-numbers language-none"><code class="language-none">123456
+代表 12时 34分 56秒<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>时间旁边的符号是专门画的，不是乱码，就是个装饰</p>
+<h2 id="异常操作可能导致的后果"><a href="#异常操作可能导致的后果" class="headerlink" title="异常操作可能导致的后果"></a>异常操作可能导致的后果</h2><p>1.不可在倒计时过程中启动正计时或倒计时功能，即按下按钮一、二，否则计时无法正常工作。</p>
+<p>2.上述误操作可通过进入时间设置再退出解决</p>
+<p>3.向8266发送错误格式的字符串将会导致51的时间显示错位，只能重启</p>
+<p>4.请不要将vcc与gnd短接，核心板没有备份：）</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>那块电木板子太小了，按钮没能集成上去，有点可惜。</p>
+<p>不停的改了好多版本……版本控制是一件非常重要的事情</p>
 
                 
             </div>
@@ -719,6 +840,55 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2022/02/20/CWriting/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="CWriting">
+                        
+                        <span class="card-title">CWriting</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">编程笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2021/05/04/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%8A%A5%E5%91%8A/">
                     <div class="card-image">
                         
@@ -735,9 +905,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -755,55 +925,6 @@
                     
                     <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
                         <span class="chip bg-color">数学建模</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/01/05/%E9%A9%AC%E4%B8%80%E7%BE%A4%20%E7%98%9F%E7%96%AB%203P1/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="瘟疫 3P1">
-                        
-                        <span class="card-title">瘟疫 3P1</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-05
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/COC/" class="post-category">
-                                    COC
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/COC/">
-                        <span class="chip bg-color">COC</span>
                     </a>
                     
                 </div>
