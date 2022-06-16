@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>OpenMV初上手</title>
+      <link href="/2022/06/16/OpenMV%E5%88%9D%E4%B8%8A%E6%89%8B/"/>
+      <url>/2022/06/16/OpenMV%E5%88%9D%E4%B8%8A%E6%89%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="OpenMV初上手"><a href="#OpenMV初上手" class="headerlink" title="OpenMV初上手"></a>OpenMV初上手</h1><h2 id="关于编译器"><a href="#关于编译器" class="headerlink" title="关于编译器"></a>关于编译器</h2><p>1.编译器左侧行数标识处红色竖线表示没有保存的改动，绿色表示已经保存的改动</p><p><img src="/OpenMV%E5%88%9D%E4%B8%8A%E6%89%8B.assets/image-20220615162742948-16552816648091.png" alt="image-20220615162742948"></p><p>2.<a href="https://www.colortell.com/colorspeed">一键查询颜色色号-查询PANTONE|MUNSELL|RAL|DIC|TOYO|NCS|DIN|CNCS|DULUX|NIPPON|GCMI|RGB等颜色色号 - ColorTell色彩管理</a></p><p>可以用这个调整和确认OpenMv的色彩识别</p><p>3.做了一些可以直接打印出来的测试用纸，建议使用好一点的彩色墨水，不要使用会反光的纸打印</p><p>所有内容均采用A4纸竖直打印</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> OpenMv </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 单片机,OpenMv </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>博客BUG贴及更新日记</title>
       <link href="/2022/06/09/%E5%8D%9A%E5%AE%A2BUG%E8%B4%B4%E5%8F%8A%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AE%B0/"/>
       <url>/2022/06/09/%E5%8D%9A%E5%AE%A2BUG%E8%B4%B4%E5%8F%8A%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AE%B0/</url>
