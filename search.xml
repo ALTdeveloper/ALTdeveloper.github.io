@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>OpenMV第三天</title>
+      <link href="/2022/06/17/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9/"/>
+      <url>/2022/06/17/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9/</url>
+      
+        <content type="html"><![CDATA[<h1 id="OpenMv第三天"><a href="#OpenMv第三天" class="headerlink" title="OpenMv第三天"></a>OpenMv第三天</h1><h2 id="1-模板匹配"><a href="#1-模板匹配" class="headerlink" title="1.模板匹配"></a>1.模板匹配</h2><p><a href="https://book.openmv.cc/image/template-match.html">模板匹配 · OpenMV中文入门教程</a></p><p>使用的是官方例程，注意使用此功能需要配备sd卡，准备模板图像，可以使用这个网站转换图像格式为PGM<a href="https://onlineconvertfree.com/zh/convert/pgm/">在线转换 pgm 文件格式 (onlineconvertfree.com)</a></p><p>模板</p><p><img src="/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9.assets/0-16554509813614.bmp" alt="0"></p><p>转换以后更改文件名，导入sd卡，运行示例程序</p><p><img src="/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9.assets/image-20220617152246150-16554505688511.png" alt="image-20220617152246150"></p><p>可以看到已经完成了匹配</p><p><img src="/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9.assets/image-20220617152428404-16554506694802.png" alt="image-20220617152428404"></p><p>但是该方法依然存在很多局限性，可见上图，同一个角转了一点 ，光线环境发生了变化，就识别不到了。下面这张图，拿远了摄像头也识别不到。</p><p><img src="/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9.assets/image-20220617152615816-16554507771803.png" alt="image-20220617152615816"></p><pre class="line-numbers language-python" data-language="python"><code class="language-python">img<span class="token punctuation">.</span>find_template<span class="token punctuation">(</span>参数<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="2-特征点检测"><a href="#2-特征点检测" class="headerlink" title="2.特征点检测"></a>2.特征点检测</h2><blockquote><p>“提取目标物体特征，默认会匹配目标特征的多种比例大小和角度，而不仅仅是保存目标特征时的大小角度，比模版匹配灵活，也不需要像多模板匹配一样保存多个模板图像。”</p></blockquote><p>实测…不太稳定，但胜在全自动，只需要比较特征点信息是否相同即可</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> OpenMv </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 单片机,OpenMv </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>OpenMV第二天</title>
+      <link href="/2022/06/17/OpenMv%E7%AC%AC%E4%BA%8C%E5%A4%A9/"/>
+      <url>/2022/06/17/OpenMv%E7%AC%AC%E4%BA%8C%E5%A4%A9/</url>
+      
+        <content type="html"><![CDATA[<h1 id="OpenMv第二天"><a href="#OpenMv第二天" class="headerlink" title="OpenMv第二天"></a>OpenMv第二天</h1><h2 id="1-寻找色块"><a href="#1-寻找色块" class="headerlink" title="1.寻找色块"></a>1.寻找色块</h2><p><a href="https://book.openmv.cc/image/blob.html">寻找色块 · OpenMV中文入门教程</a></p><p>完整函数</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">image<span class="token punctuation">.</span>find_blobs<span class="token punctuation">(</span>thresholds<span class="token punctuation">,</span> roi<span class="token operator">=</span>Auto<span class="token punctuation">,</span> x_stride<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> y_stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> invert<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> area_threshold<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> pixels_threshold<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> merge<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> margin<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> threshold_cb<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> merge_cb<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>thresholds——要查询的颜色阈值，LAB颜色空间，例如</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">red <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">17</span><span class="token punctuation">,</span> <span class="token number">39</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">,</span> <span class="token number">45</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">54</span><span class="token punctuation">)</span><span class="token comment">#LAB颜色空间下的阈值(minL, maxL, minA, maxA, minB, maxB)，可以用工具取得</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>在工具–机器视觉–阈值编辑器里面可以快速取得</p><p>roi是“感兴趣区”</p><p>x_stride和y_stride 就是查找的色块指定x(或y)方向上最小宽度的像素，用来过滤掉小色块</p><p>invert 反转阈值，把阈值以外的颜色作为阈值进行查找</p><p>area_threshold 面积阈值，如果色块被框起来的面积小于这个值，会被过滤掉</p><p>pixels_threshold 像素个数阈值，如果色块像素数量小于这个值，会被过滤掉</p><p>merge 合并，如果设置为True，那么合并所有重叠的blob（颜色区域）为一个</p><p>示例<a href="https://github.com/ALTdeveloper/OpenMvLearningSource/blob/main/%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/img_ColorAreaDetect.py">Lazurit&#x2F;img_ColorAreaDetect.py(github)</a></p><p>所得到的结果是一个包含了所有符合要求的色块的集合，可以使用</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">blobs <span class="token operator">=</span> img<span class="token punctuation">.</span>find_blobs<span class="token punctuation">(</span>参数<span class="token number">12345</span><span class="token punctuation">)</span><span class="token keyword">for</span> blob <span class="token keyword">in</span> blobs<span class="token punctuation">:</span><span class="token comment">#遍历每一个区域</span>        <span class="token comment">#此处可以对遍历到的区域进行操作</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>来遍历里面所有的色块，进行操作</p><h2 id="2-AprilTag"><a href="#2-AprilTag" class="headerlink" title="2.AprilTag"></a>2.AprilTag</h2><blockquote><p>“是二维码！”——四月标签如是说</p></blockquote><p><a href="https://book.openmv.cc/image/apriltag.html">AprilTag标记跟踪 · OpenMV中文入门教程</a></p><p>示例<a href="https://github.com/ALTdeveloper/OpenMvLearningSource/blob/main/%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/AprilTag_get.py">Lazurit&#x2F;AprilTag_get.py(github.com)</a></p><p>可以用来追踪物体的方位和三维坐标，还能返回物体旋转角度(是小数，除于$\pi$乘以180才能得到角度值)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> OpenMv </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 单片机,OpenMv </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>OpenMV第一天</title>
       <link href="/2022/06/17/OpenMV%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
       <url>/2022/06/17/OpenMV%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
