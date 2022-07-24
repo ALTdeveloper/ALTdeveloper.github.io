@@ -4,9 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="OpenMV第三天, 电子">
-    <meta name="description" content="OpenMv第三天1.模板匹配模板匹配 · OpenMV中文入门教程
-使用的是官方例程，注意使用此功能需要配备sd卡，准备模板图像，可以使用这个网站转换图像格式为PGM在线转换 pgm 文件格式 (onlineconvertfree.com">
+    <meta name="keywords" content="Linux摸索着上手（MaixPy3-V831）, 电子">
+    <meta name="description" content="Linux摸索着上手（MaixPy3-V831）前言
+“没有前言，都是血泪”—一个bug修三天
+
+基于v831开发（maixpy）
+大全Linux系统简介 (biancheng.net)
+vi&amp;#x2F;vim编辑器Linux vi&amp;#x2">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>OpenMV第三天 | Lazurit</title>
+    <title>Linux摸索着上手（MaixPy3-V831） | Lazurit</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -310,12 +314,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">OpenMV第三天</h1>
+                    <h1 class="description center-align post-title">Linux摸索着上手（MaixPy3-V831）</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +435,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA-OpenMv/">
-                                <span class="chip bg-color">单片机,OpenMv</span>
+                            <a href="/tags/Linux-V831-MaixPy3/">
+                                <span class="chip bg-color">Linux,V831,MaixPy3</span>
                             </a>
                         
                     </div>
@@ -443,8 +447,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/OpenMv/" class="post-category">
-                                OpenMv
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
                             </a>
                         
                     </div>
@@ -456,21 +460,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-17
+                    2022-07-24
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-06-17
+                    2022-07-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    271
+                    611
                 </div>
                 
 
@@ -495,22 +499,43 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="OpenMv第三天"><a href="#OpenMv第三天" class="headerlink" title="OpenMv第三天"></a>OpenMv第三天</h1><h2 id="1-模板匹配"><a href="#1-模板匹配" class="headerlink" title="1.模板匹配"></a>1.模板匹配</h2><p><a target="_blank" rel="noopener" href="https://book.openmv.cc/image/template-match.html">模板匹配 · OpenMV中文入门教程</a></p>
-<p>使用的是官方例程，注意使用此功能需要配备sd卡，准备模板图像，可以使用这个网站转换图像格式为PGM<a target="_blank" rel="noopener" href="https://onlineconvertfree.com/zh/convert/pgm/">在线转换 pgm 文件格式 (onlineconvertfree.com)</a></p>
-<p>模板</p>
-<p><img src="/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9.assets/0-16554509813614.bmp" alt="0"></p>
-<p>转换以后更改文件名，导入sd卡，运行示例程序</p>
-<p><img src="/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9.assets/image-20220617152246150-16554505688511.png" alt="image-20220617152246150"></p>
-<p>可以看到已经完成了匹配</p>
-<p><img src="/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9.assets/image-20220617152428404-16554506694802.png" alt="image-20220617152428404"></p>
-<p>但是该方法依然存在很多局限性，可见上图，同一个角转了一点 ，光线环境发生了变化，就识别不到了。下面这张图，拿远了摄像头也识别不到。</p>
-<p><img src="/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9.assets/image-20220617152615816-16554507771803.png" alt="image-20220617152615816"></p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">img<span class="token punctuation">.</span>find_template<span class="token punctuation">(</span>参数<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="2-特征点检测"><a href="#2-特征点检测" class="headerlink" title="2.特征点检测"></a>2.特征点检测</h2><blockquote>
-<p>“提取目标物体特征，默认会匹配目标特征的多种比例大小和角度，而不仅仅是保存目标特征时的大小角度，比模版匹配灵活，也不需要像多模板匹配一样保存多个模板图像。”</p>
+                <h1 id="Linux摸索着上手（MaixPy3-V831）"><a href="#Linux摸索着上手（MaixPy3-V831）" class="headerlink" title="Linux摸索着上手（MaixPy3-V831）"></a>Linux摸索着上手（MaixPy3-V831）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>“没有前言，都是血泪”—一个bug修三天</p>
 </blockquote>
-<p>实测…不太稳定，但胜在全自动，只需要比较特征点信息是否相同即可</p>
+<p>基于v831开发（maixpy）</p>
+<p>大全<a target="_blank" rel="noopener" href="http://c.biancheng.net/linux_tutorial/10/">Linux系统简介 (biancheng.net)</a></p>
+<h2 id="vi-x2F-vim编辑器"><a href="#vi-x2F-vim编辑器" class="headerlink" title="vi&#x2F;vim编辑器"></a>vi&#x2F;vim编辑器</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-vim.html">Linux vi&#x2F;vim | 菜鸟教程 (runoob.com)</a></p>
+<p>反正vi 文件名就能进文件，按a编辑，按esc退出编辑，这个状态下输入冒号:然后键入命令回车就能执行</p>
+<p>例如:wq保存退出，:q!退出</p>
+<h2 id="创建一个sh脚本"><a href="#创建一个sh脚本" class="headerlink" title="创建一个sh脚本"></a>创建一个sh脚本</h2><p>在命令行里面写入</p>
+<p>vi mysh.sh就能建立一个叫mysh的脚本，然后你就可以在里面写linux命令，保存退出就能拿来执行了</p>
+<h2 id="终端是什么"><a href="#终端是什么" class="headerlink" title="终端是什么"></a>终端是什么</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27825451/article/details/101307195">Linux中的终端（Terminal）与控制台（Console）的区别</a></p>
+<p>“系统中有没有什么变量可以表示焦点终端呢？当然有了，那就是&#x2F;dev&#x2F;console，不管你在哪里往&#x2F;dev&#x2F;console里写东西，这些东西总会出现在系统当前的焦点终端上！</p>
+<p>本质上&#x2F;dev&#x2F;console其实就是一个全局变量，指代当前的焦点终端，如果当前的焦点是&#x2F;dev&#x2F;tty4，那么&#x2F;dev&#x2F;console指的就是&#x2F;dev&#x2F;tty4，当然这一切都是由内核来维护的。</p>
+<p>那么系统中有没有一个叫做自己的全局变量呢？当然有，那就是&#x2F;dev&#x2F;tty，也就是说，无论你在哪个终端下工作，当你往&#x2F;dev&#x2F;tty里写东西的时候，它总是会马上出现在你的眼前。”</p>
+<h2 id="在openwrt里面配置开机自启脚本"><a href="#在openwrt里面配置开机自启脚本" class="headerlink" title="在openwrt里面配置开机自启脚本"></a>在openwrt里面配置开机自启脚本</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38890593/article/details/87861003">openwrt下自建启动脚本的方法</a></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">1.cd &#x2F;etc&#x2F;init.d    # 进入init.d目录
+
+2. 创建一个你的脚本，例如echo_hello
+
+3. 在echo_hello文件中加入以下内容：
+
+#!bin&#x2F;sh &#x2F;etc&#x2F;rc.common  
+ 
+START&#x3D;88	   #设置启动顺序
+
+start()&#123;        
+        echo “hello” &gt;&#x2F;dev&#x2F;console&#x2F;	#输出打印信息hello到console
+        echo hello &gt;&#x2F;tmp&#x2F;hello			#在tmp目录下生成hello文件
+&#125;
+
+4、chmod 0755 &#x2F;etc&#x2F;init.d&#x2F;test    # 给权限
+
+5. cd &#x2F;etc&#x2F;rc.d    # 进入rc.d目录
+
+6. ln -s &#x2F;etc&#x2F;init.d&#x2F;echo_hello &#x2F;etc&#x2F;rc.d&#x2F;S88echo_hello    # 建立启动软链接创建启动脚本<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="MaixPy3独属的坑"><a href="#MaixPy3独属的坑" class="headerlink" title="MaixPy3独属的坑"></a>MaixPy3独属的坑</h2><p>在启动jupyter的时候，上电就会杀掉开机自动运行的程序，所以调试开机自启程序的时候不要打开jupyter，不过你可以直接用shell执行 python 程序名称 来运行程序</p>
 
                 
             </div>
@@ -540,8 +565,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA-OpenMv/">
-                                    <span class="chip bg-color">单片机,OpenMv</span>
+                                <a href="/tags/Linux-V831-MaixPy3/">
+                                    <span class="chip bg-color">Linux,V831,MaixPy3</span>
                                 </a>
                             
                         </div>
@@ -719,13 +744,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/07/24/Linux%E6%91%B8%E7%B4%A2%E7%9D%80%E4%B8%8A%E6%89%8B/">
+                <a href="/2022/07/24/tensorflow%E6%9C%AC%E5%9C%B0%E8%AE%AD%E7%BB%83%E7%9A%84%E5%9D%91/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Linux摸索着上手（MaixPy3-V831）">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="tensorflow本地训练的坑">
                         
-                        <span class="card-title">Linux摸索着上手（MaixPy3-V831）</span>
+                        <span class="card-title">tensorflow本地训练的坑</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -742,8 +767,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/k210/" class="post-category">
+                                    k210
                                 </a>
                             
                             
@@ -753,8 +778,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux-V831-MaixPy3/">
-                        <span class="chip bg-color">Linux,V831,MaixPy3</span>
+                    <a href="/tags/k210-MaixPy/">
+                        <span class="chip bg-color">k210,MaixPy</span>
                     </a>
                     
                 </div>
@@ -768,13 +793,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/17/OpenMv%E7%AC%AC%E4%BA%8C%E5%A4%A9/">
+                <a href="/2022/06/17/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="OpenMV第二天">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="OpenMV第三天">
                         
-                        <span class="card-title">OpenMV第二天</span>
+                        <span class="card-title">OpenMV第三天</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

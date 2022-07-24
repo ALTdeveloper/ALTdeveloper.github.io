@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>tensorflow本地训练的坑</title>
+      <link href="/2022/07/24/tensorflow%E6%9C%AC%E5%9C%B0%E8%AE%AD%E7%BB%83%E7%9A%84%E5%9D%91/"/>
+      <url>/2022/07/24/tensorflow%E6%9C%AC%E5%9C%B0%E8%AE%AD%E7%BB%83%E7%9A%84%E5%9D%91/</url>
+      
+        <content type="html"><![CDATA[<h1 id="tensorflow本地训练的坑"><a href="#tensorflow本地训练的坑" class="headerlink" title="tensorflow本地训练的坑"></a>tensorflow本地训练的坑</h1><p>该博文旨在记录maix的k210板子神经网络训练</p><p>1.有一种东西叫做论坛</p><p>2.<a href="https://bbs.sipeed.com/thread/599">【点灯鼠教程】MX-Yolo3完全配置指南【全图文教程】 (sipeed.com)</a>这里介绍了第三方的训练器，不用使用官方那个傻乎乎的命令行了</p><p>3.anaconda是个好东西，可以配置多个环境而不冲突，用哪个就把系统环境变量指向哪个就行</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> k210 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> k210,MaixPy </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux摸索着上手（MaixPy3-V831）</title>
+      <link href="/2022/07/24/Linux%E6%91%B8%E7%B4%A2%E7%9D%80%E4%B8%8A%E6%89%8B/"/>
+      <url>/2022/07/24/Linux%E6%91%B8%E7%B4%A2%E7%9D%80%E4%B8%8A%E6%89%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Linux摸索着上手（MaixPy3-V831）"><a href="#Linux摸索着上手（MaixPy3-V831）" class="headerlink" title="Linux摸索着上手（MaixPy3-V831）"></a>Linux摸索着上手（MaixPy3-V831）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>“没有前言，都是血泪”—一个bug修三天</p></blockquote><p>基于v831开发（maixpy）</p><p>大全<a href="http://c.biancheng.net/linux_tutorial/10/">Linux系统简介 (biancheng.net)</a></p><h2 id="vi-x2F-vim编辑器"><a href="#vi-x2F-vim编辑器" class="headerlink" title="vi&#x2F;vim编辑器"></a>vi&#x2F;vim编辑器</h2><p><a href="https://www.runoob.com/linux/linux-vim.html">Linux vi&#x2F;vim | 菜鸟教程 (runoob.com)</a></p><p>反正vi 文件名就能进文件，按a编辑，按esc退出编辑，这个状态下输入冒号:然后键入命令回车就能执行</p><p>例如:wq保存退出，:q!退出</p><h2 id="创建一个sh脚本"><a href="#创建一个sh脚本" class="headerlink" title="创建一个sh脚本"></a>创建一个sh脚本</h2><p>在命令行里面写入</p><p>vi mysh.sh就能建立一个叫mysh的脚本，然后你就可以在里面写linux命令，保存退出就能拿来执行了</p><h2 id="终端是什么"><a href="#终端是什么" class="headerlink" title="终端是什么"></a>终端是什么</h2><p><a href="https://blog.csdn.net/qq_27825451/article/details/101307195">Linux中的终端（Terminal）与控制台（Console）的区别</a></p><p>“系统中有没有什么变量可以表示焦点终端呢？当然有了，那就是&#x2F;dev&#x2F;console，不管你在哪里往&#x2F;dev&#x2F;console里写东西，这些东西总会出现在系统当前的焦点终端上！</p><p>本质上&#x2F;dev&#x2F;console其实就是一个全局变量，指代当前的焦点终端，如果当前的焦点是&#x2F;dev&#x2F;tty4，那么&#x2F;dev&#x2F;console指的就是&#x2F;dev&#x2F;tty4，当然这一切都是由内核来维护的。</p><p>那么系统中有没有一个叫做自己的全局变量呢？当然有，那就是&#x2F;dev&#x2F;tty，也就是说，无论你在哪个终端下工作，当你往&#x2F;dev&#x2F;tty里写东西的时候，它总是会马上出现在你的眼前。”</p><h2 id="在openwrt里面配置开机自启脚本"><a href="#在openwrt里面配置开机自启脚本" class="headerlink" title="在openwrt里面配置开机自启脚本"></a>在openwrt里面配置开机自启脚本</h2><p><a href="https://blog.csdn.net/weixin_38890593/article/details/87861003">openwrt下自建启动脚本的方法</a></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">1.cd &#x2F;etc&#x2F;init.d    # 进入init.d目录2. 创建一个你的脚本，例如echo_hello3. 在echo_hello文件中加入以下内容：#!bin&#x2F;sh &#x2F;etc&#x2F;rc.common   START&#x3D;88   #设置启动顺序start()&#123;                echo “hello” &gt;&#x2F;dev&#x2F;console&#x2F;#输出打印信息hello到console        echo hello &gt;&#x2F;tmp&#x2F;hello#在tmp目录下生成hello文件&#125;4、chmod 0755 &#x2F;etc&#x2F;init.d&#x2F;test    # 给权限5. cd &#x2F;etc&#x2F;rc.d    # 进入rc.d目录6. ln -s &#x2F;etc&#x2F;init.d&#x2F;echo_hello &#x2F;etc&#x2F;rc.d&#x2F;S88echo_hello    # 建立启动软链接创建启动脚本<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="MaixPy3独属的坑"><a href="#MaixPy3独属的坑" class="headerlink" title="MaixPy3独属的坑"></a>MaixPy3独属的坑</h2><p>在启动jupyter的时候，上电就会杀掉开机自动运行的程序，所以调试开机自启程序的时候不要打开jupyter，不过你可以直接用shell执行 python 程序名称 来运行程序</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux,V831,MaixPy3 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>OpenMV第三天</title>
       <link href="/2022/06/17/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9/"/>
       <url>/2022/06/17/OpenMv%E7%AC%AC%E4%B8%89%E5%A4%A9/</url>
